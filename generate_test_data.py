@@ -37,7 +37,7 @@ def main():
     dfs = np.array_split(raw_df.sort_values('timestamp'), 50)
     for df in dfs:
         max_date = df['timestamp'].max().strftime('%Y-%m-%d')
-        df.to_csv(f"./input/data_{max_date}.csv", index=False)
+        df.to_csv(f"./input/unprocessed/data_{max_date}.csv", index=False)
 
 
 if __name__ == "__main__":
