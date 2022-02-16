@@ -43,10 +43,13 @@
 
 # Features to implement in the future
 1. Logging
-2. More decision and logistics around what data to keep.  Maybe we don't decide to keep the input data and it's fine to just have output snapshots.
-3. Convenience functions in csv_utils.py 
+2. Error handling for bad data (e.g. fuzzy matching for slight differences in column headings, additional or missing columns, incompatible data type values, etc.)
+   1. Automation in validating and correcting data.
+3. More decision and logistics around what data to keep.  Maybe we don't decide to keep the input data and it's fine to just have output snapshots.
+4. Convenience functions in csv_utils.py 
    1. Cleaning existing data and starting from scratch. 
    2. Resetting latest.csv to a previous snapshot
-4. Integration with other data sources.  In this case it's just a file dump into a particular directory on a filesystem.
-5. Jinja templating to handle different client implementations of the code
-6. Exposing `./output/latest.csv` in a database or api as a source of truth
+5. Integration with other data sources.  In this case it's just a file dump into a particular directory on a filesystem.
+6. Jinja templating to handle different client implementations of the code
+7. Exposing `./output/latest.csv` in a database or api as a source of truth
+8. Potentially implement OOP instead of Functional programming as features expand and I gain more clarity into the various use cases and integrations with existing tools.
