@@ -4,11 +4,35 @@
 ## Synthetic dataset creation using Faker
 1. Uses Faker library to generate synthetic data
    
-    ![](2022-02-15-20-34-35.png)
+```
+CREATE_ROW_CODE = """
+{
+    "id": faker.words(1, uuids, False)[0],
+    "description": faker.bs(),
+    "timestamp": faker.date_between(datetime(2021, 2, 15), datetime(2022, 2, 15)),
+}
+"""
 
+
+def create_rows(num_rows=1):
+    faker = Faker()
+    output = []
+    for _ in range(num_rows):
+        row = eval(CREATE_ROW_CODE)
+        output.append(row)
+    return output
+```
 2. 100,000 rows split into 50 files ordered by date 
    
-    ![](2022-02-15-20-33-48.png)
+```
+def main():
+    raw_df = pd.DataFrame(create_rows(100000))
+    # split synthetic data into chunks to create multiple files
+    dfs = np.array_split(raw_df.sort_values('timestamp'), 50)
+    for df in dfs:
+        max_date = df['timestamp'].max().strftime('%Y-%m-%d')
+        df.to_csv(f"./input/unprocessed/data_{max_date}.csv", index=False)
+```
 
 3. Imitates a data workflow where csv files are received on a 1-2 week cadence and files are timestamped accordingly
 
