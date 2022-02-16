@@ -39,3 +39,6 @@ def batch_process():
             previous_plus_batch_df = pd.concat([previous_latest,concatenated_top_per_uuid_df])
             previous_plus_batch_top_per_uuid_df = previous_plus_batch_df.sort_values('id', ascending=False).groupby('id').head(1)
             previous_plus_batch_top_per_uuid_df.to_csv(f"./output/latest.csv", index=False)
+
+if __name__ == '__main__':
+    pass
